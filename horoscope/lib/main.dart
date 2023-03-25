@@ -208,47 +208,61 @@ class _FinderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-          color: Colors.indigo[800],
-          child: Form(
-              child: Column(children: [
-            Container(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 0, color: Colors.white),
-                    borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10)),
-                    color: Colors.white),
-                margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-                padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
-                alignment: Alignment.topLeft,
-                child: const Text(
-                    'Здесь вы можете искать подходящих вам по гороскопу людей, напишите кого вы желаете найти')),
-            Container(
-                decoration: BoxDecoration(
-                    border: Border.all(width: 0, color: Colors.white),
-                    color: Colors.white),
-                alignment: Alignment.topLeft,
-                padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Возраст',
-                          style: Theme.of(context).textTheme.titleSmall),
-                      _AgeForm(),
-                      Text('Пол',
-                          style: Theme.of(context).textTheme.titleSmall),
-                      const GenderRadios(),
-                      Text('Создвездие',
-                          style: Theme.of(context).textTheme.titleSmall),
-                      const DropdownButtonConstellation(),
-                      Text('Радиус поиска',
-                          style: Theme.of(context).textTheme.titleSmall),
-                      const ButtonsRadioForm(),
-                      _ButtonSearch()
-                    ]))
-          ]))),
+    return CustomScrollView(
+      slivers: [
+        SliverToBoxAdapter(
+          child: Container(
+              color: Colors.indigo[800],
+              child: Form(
+                  child: Column(children: [
+                Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 0, color: Colors.white),
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10)),
+                        color: Colors.white),
+                    margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+                    padding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                    alignment: Alignment.topLeft,
+                    child: const Text(
+                        'Здесь вы можете искать подходящих вам по гороскопу людей, напишите кого вы желаете найти')),
+                Container(
+                    decoration: BoxDecoration(
+                        border: Border.all(width: 0, color: Colors.white),
+                        color: Colors.white),
+                    alignment: Alignment.topLeft,
+                    padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Возраст',
+                              style: Theme.of(context).textTheme.titleSmall),
+                          _AgeForm(),
+                          Text('Пол',
+                              style: Theme.of(context).textTheme.titleSmall),
+                          const GenderRadios(),
+                          Text('Создвездие',
+                              style: Theme.of(context).textTheme.titleSmall),
+                          const DropdownButtonConstellation(),
+                          Text('Радиус поиска',
+                              style: Theme.of(context).textTheme.titleSmall),
+                          const ButtonsRadioForm(),
+                        ])),
+                Container(
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 0, color: Colors.white),
+                      color: Colors.white),
+                  padding: const EdgeInsets.fromLTRB(40, 5, 40, 20),
+                  child: _ButtonSearch(),
+                )
+              ]))),
+        ),
+        SliverFillRemaining(
+          hasScrollBody: false,
+          child: Container(color: Colors.white),
+        )
+      ],
     );
   }
 }
@@ -607,7 +621,7 @@ class _ButtonsRadioFormState extends State<ButtonsRadioForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.only(top: 10, bottom: 20),
+        margin: const EdgeInsets.only(top: 10, bottom: 0),
         child: Row(
           children: <Widget>[
             Expanded(child: customRadioButton("100 м", 1)),
