@@ -7,13 +7,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:horoscope/main.dart';
+import 'package:horoscope/horoscope_app.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const HoroscopeApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
