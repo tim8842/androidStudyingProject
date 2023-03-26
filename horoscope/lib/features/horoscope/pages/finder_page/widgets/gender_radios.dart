@@ -15,12 +15,20 @@ class _GenderRadios extends State<GenderRadios> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.only(top: 10, bottom: 40),
+        margin: const EdgeInsets.only(top: 10, bottom: 20),
         height: 35,
         child: Row(
           children: <Widget>[
-            const Flexible(
-              child: Text('Мужчина'),
+            Flexible(
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    _gender = Gender.male;
+                  });
+                },
+                child: Text('Мужчина',
+                    style: Theme.of(context).textTheme.titleSmall),
+              ),
             ),
             Radio<Gender>(
                 value: Gender.male,
@@ -30,8 +38,16 @@ class _GenderRadios extends State<GenderRadios> {
                     _gender = value;
                   });
                 }),
-            const Flexible(
-              child: Text('Женщина'),
+            Flexible(
+              child: InkWell(
+                onTap: () {
+                  setState(() {
+                    _gender = Gender.female;
+                  });
+                },
+                child: Text('Женщина',
+                    style: Theme.of(context).textTheme.titleSmall),
+              ),
             ),
             Radio<Gender>(
                 value: Gender.female,
