@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:horoscope/features/horoscope/pages/pages.dart';
-import 'package:horoscope/services/horoscope/horoscope_service.dart';
 
 class FadeThroughTransitionHoroscope extends StatefulWidget {
   const FadeThroughTransitionHoroscope({super.key});
