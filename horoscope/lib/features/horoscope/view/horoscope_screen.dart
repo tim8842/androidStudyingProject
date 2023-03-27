@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:horoscope/features/horoscope/pages/pages.dart';
+import 'package:horoscope/services/horoscope/horoscope_service.dart';
 
 class FadeThroughTransitionHoroscope extends StatefulWidget {
   const FadeThroughTransitionHoroscope({super.key});
@@ -33,6 +34,12 @@ class _FadeThroughTransitionHoroscopeState
       _currentIndex = index;
     });
   }
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   HoroscopeService().getHoroscopeList();
+  // }
 
   @override
   Widget build(BuildContext context) {

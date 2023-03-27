@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:horoscope/services/horoscope/horoscope_service.dart';
 
 class SaveExitContainer extends StatelessWidget {
   const SaveExitContainer({super.key});
@@ -8,7 +9,11 @@ class SaveExitContainer extends StatelessWidget {
     return SizedBox(
       height: 35,
       child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-        ElevatedButton(onPressed: () {}, child: const Text('Сохранить')),
+        ElevatedButton(
+            onPressed: () {
+              HoroscopeService().getHoroscopeList();
+            },
+            child: const Text('Сохранить')),
         const SizedBox(
           width: 20,
         ),
