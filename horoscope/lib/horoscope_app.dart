@@ -4,7 +4,9 @@ import 'package:horoscope/theme/theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 class HoroscopeApp extends StatelessWidget {
-  const HoroscopeApp({super.key});
+  final int initScreen;
+
+  const HoroscopeApp({super.key, required this.initScreen});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class HoroscopeApp extends StatelessWidget {
       supportedLocales: const [Locale('ru')],
       title: 'Flutter Demo',
       theme: defualtTheme,
+      initialRoute: initScreen == 0 ? "/intro" : "/",
       routes: routes,
     );
   }

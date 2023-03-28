@@ -4,17 +4,25 @@ import 'package:intl/intl.dart';
 
 class BasicDateField extends StatelessWidget {
   final format = DateFormat("dd-MM-yyyy");
+  final Color colorTitle;
 
-  BasicDateField({super.key});
+  BasicDateField({super.key, required this.colorTitle});
   @override
   Widget build(BuildContext context) {
     return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text('Дата рождения', style: Theme.of(context).textTheme.titleSmall),
+          Text(
+            'Дата рождения',
+            style: TextStyle(
+                color: colorTitle, fontSize: 18, fontWeight: FontWeight.w500),
+          ),
           DateTimeField(
-            style: const TextStyle(color: Colors.black, fontSize: 20),
+            style: TextStyle(color: colorTitle, fontSize: 20),
             format: format,
+            decoration: InputDecoration(
+                enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(color: colorTitle))),
             onShowPicker: (context, currentValue) {
               return showDatePicker(
                   locale: const Locale('ru'),

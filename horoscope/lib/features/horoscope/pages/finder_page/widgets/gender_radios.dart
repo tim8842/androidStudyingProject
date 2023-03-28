@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 enum Gender { male, female }
 
 class GenderRadios extends StatefulWidget {
-  const GenderRadios({super.key});
+  final Color colorTitle;
+
+  const GenderRadios({super.key, required this.colorTitle});
 
   @override
+  // ignore: no_logic_in_create_state
   State<GenderRadios> createState() => _GenderRadios();
 }
 
@@ -27,10 +30,15 @@ class _GenderRadios extends State<GenderRadios> {
                   });
                 },
                 child: Text('Мужчина',
-                    style: Theme.of(context).textTheme.titleSmall),
+                    style: TextStyle(
+                        color: widget.colorTitle,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400)),
               ),
             ),
             Radio<Gender>(
+                fillColor: MaterialStateColor.resolveWith(
+                    (states) => widget.colorTitle),
                 value: Gender.male,
                 groupValue: _gender,
                 onChanged: (Gender? value) {
@@ -46,10 +54,15 @@ class _GenderRadios extends State<GenderRadios> {
                   });
                 },
                 child: Text('Женщина',
-                    style: Theme.of(context).textTheme.titleSmall),
+                    style: TextStyle(
+                        color: widget.colorTitle,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400)),
               ),
             ),
             Radio<Gender>(
+                fillColor: MaterialStateColor.resolveWith(
+                    (states) => widget.colorTitle),
                 value: Gender.female,
                 groupValue: _gender,
                 onChanged: (Gender? value) {

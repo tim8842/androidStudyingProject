@@ -39,7 +39,9 @@ class FinderPage extends StatelessWidget {
                           const AgeForm(),
                           Text('Пол',
                               style: Theme.of(context).textTheme.titleSmall),
-                          const GenderRadios(),
+                          const GenderRadios(
+                            colorTitle: Colors.black,
+                          ),
                           Text('Создвездие',
                               style: Theme.of(context).textTheme.titleSmall),
                           const DropdownButtonConstellation(),

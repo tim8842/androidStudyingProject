@@ -28,9 +28,11 @@ class ProfilePage extends StatelessWidget {
                       const SizedBox(height: 30),
                       const InputFio(),
                       const SizedBox(height: 30),
-                      const GenderRadios(),
+                      const GenderRadios(colorTitle: Colors.black),
                       const SizedBox(height: 30),
-                      BasicDateField(),
+                      BasicDateField(
+                        colorTitle: Colors.black,
+                      ),
                       const SizedBox(height: 60),
                       const CcPlaceForm(),
                       const SizedBox(height: 80),

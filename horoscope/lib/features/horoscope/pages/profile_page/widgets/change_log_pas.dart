@@ -11,14 +11,14 @@ class ChangeLogPas extends StatelessWidget {
         InkWell(
           child: const Text('Изменить пароль'),
           onTap: () {
-            Navigator.of(context).pushNamed('/finder/map');
+            // Navigator.of(context).pushNamed('/finder/map');
           },
         ),
         const SizedBox(height: 15),
         InkWell(
           child: const Text('Изменить почту'),
           onTap: () {
-            Navigator.of(context).pushNamed('/finder/map');
+            // Navigator.of(context).pushNamed('/finder/map');
           },
         )
       ],
