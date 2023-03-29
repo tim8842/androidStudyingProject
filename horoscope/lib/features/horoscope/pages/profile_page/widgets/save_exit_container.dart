@@ -11,7 +11,7 @@ class SaveExitContainer extends StatelessWidget {
       child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
         ElevatedButton(
             onPressed: () {
-              HoroscopeService().getHoroscopeList();
+              // HoroscopeService().getHoroscopeList();
             },
             child: const Text('Сохранить')),
         const SizedBox(
