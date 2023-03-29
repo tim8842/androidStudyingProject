@@ -13,7 +13,7 @@ laboratory work for the institute
 
 Он расположен по пути
 
-```horoscope/app-release.apk```
+```horoscope\app-release.apk```
 
 Для запуска приложения нужно запустить эмулятор, перейти в папку в которой у вас установлен Android sdk, далее в папку platform-tools открыть консоль и написать команду
 ```
@@ -22,3 +22,4 @@ adb install <путь до apk файла>
 
 После чего следует проверить телефон, у вас должно появится приложение под названием horoscope
 
+Зависимости хранятся в файле horoscope\pubspec.yaml
