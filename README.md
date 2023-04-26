@@ -27,6 +27,7 @@ adb install <путь до apk файла>
 
 Либо вы можете посмотреть их тут:
 
+'''
   flutter_svg: ^2.0.4
   cupertino_icons: ^1.0.2
   readmore: ^2.1.0
@@ -44,7 +45,7 @@ adb install <путь до apk файла>
   shared_preferences: ^2.0.20
   firebase_core: ^2.10.0
   firebase_auth: ^4.4.2
-  email_validator: ^2.1.17
+  email_validator: ^2.1.17'''
 
 # AUTH
 Можно войти в аккаунт с введя следующие данные:
