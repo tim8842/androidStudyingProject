@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "720365984589",
+    "project_id": "mobile-337ab",
+    "storage_bucket": "mobile-337ab.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720365984589:android:9dd756bb5d4c8c0ce6f504",
+        "android_client_info": {
+          "package_name": "com.buffoons.horoscope"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720365984589-88r087lre871vm6u1tljmote43e6rup1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq5lWHFQBeqMkHaR9Kvp4BSNCXNWDLzig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720365984589-88r087lre871vm6u1tljmote43e6rup1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

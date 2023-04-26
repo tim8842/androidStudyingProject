@@ -29,6 +29,9 @@ dependencies:
   geocoding: ^2.1.0
   tuple: ^2.0.1
   shared_preferences: ^2.0.20
+  firebase_core: ^2.1.0
+  firebase_auth: ^4.0.2
+  email_validator: ^2.1.17
 
 dev_dependencies:
   flutter_test:
