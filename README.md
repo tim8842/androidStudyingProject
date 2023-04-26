@@ -24,3 +24,12 @@ adb install <путь до apk файла>
 
 Зависимости хранятся в файле 
 ```horoscope\pubspec.yaml```
+
+# AUTH
+Можно войти в аккаунт с введя следующие данные:
+
+login: test@gmail.com
+
+password: test123
+
+Либо нажать на надписать Register now, чтобы создать новый аккаунт
