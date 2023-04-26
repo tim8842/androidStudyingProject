@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 
 class EmailForm extends StatelessWidget {
-  const EmailForm({super.key, required this.color});
   final Color color;
+  final controller;
+  EmailForm({super.key, required this.color, this.controller});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 60,
       child: TextFormField(
+        controller: controller,
         style: const TextStyle(fontSize: 20),
         restorationId: 'email_field',
         textInputAction: TextInputAction.next,
@@ -25,7 +27,7 @@ class EmailForm extends StatelessWidget {
             labelStyle: TextStyle(color: color, fontSize: 20)),
         keyboardType: TextInputType.emailAddress,
         onSaved: (value) {
-          // person.email = value;
+          // controller.text = value;
           // _lifeStory.requestFocus();
         },
       ),

@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:horoscope/services/horoscope/horoscope_service.dart';
 
 class SaveExitContainer extends StatelessWidget {
   const SaveExitContainer({super.key});
+
+  void sighUserOut() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +22,7 @@ class SaveExitContainer extends StatelessWidget {
           width: 20,
         ),
         ElevatedButton(
-          onPressed: () {
-            // Navigator.pushNamed(context, '/intro');
-          },
+          onPressed: sighUserOut,
           style: ButtonStyle(
             backgroundColor: MaterialStateProperty.all(Colors.red),
           ),

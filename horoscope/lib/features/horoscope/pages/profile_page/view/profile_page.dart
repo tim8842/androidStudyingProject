@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:horoscope/features/horoscope/pages/profile_page/widgets/widgets.dart';
 
@@ -9,6 +10,7 @@ class ProfilePage extends StatelessWidget {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
+          automaticallyImplyLeading: false,
           expandedHeight: 300,
           stretch: true,
           flexibleSpace: FlexibleSpaceBar(

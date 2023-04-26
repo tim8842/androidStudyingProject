@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'password_field.dart';
 
 class PasswordForm extends StatelessWidget {
-  const PasswordForm({super.key, required this.color, required this.label});
+  const PasswordForm(
+      {super.key, required this.color, required this.label, this.controller});
   final Color color;
   final String label;
+  final controller;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 100,
       child: PasswordField(
+        controller: controller,
         color: color,
         restorationId: 'password_field',
         textInputAction: TextInputAction.next,

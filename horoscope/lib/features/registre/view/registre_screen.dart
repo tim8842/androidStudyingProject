@@ -1,8 +1,63 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:horoscope/features/registre/widgets/widgets.dart';
 
-class RegistreScreen extends StatelessWidget {
+class RegistreScreen extends StatefulWidget {
   const RegistreScreen({super.key});
+
+  @override
+  State<RegistreScreen> createState() => _RegistreScreenState();
+}
+
+class _RegistreScreenState extends State<RegistreScreen> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
+
+  String error = "";
+
+  void signUserUp() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+    try {
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text);
+      } else {
+        setState(() {
+          error = "Пароли отличаются";
+        });
+      }
+      Navigator.pop(context);
+      Navigator.of(context).pushNamed('/');
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      if ((e.code == 'user-not-found') || (e.code == 'invalid-email')) {
+        setState(() {
+          error = "Почты либо не существует, либо ввели неверно";
+        });
+      } else if (e.code == 'unknown') {
+        setState(() {
+          error = "Заполните поля";
+        });
+      } else if (e.code == 'weak-password') {
+        setState(() {
+          error = "Слабый пароль, введите больше 6 символов";
+        });
+      } else {
+        setState(() {
+          error = "";
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,21 +82,24 @@ class RegistreScreen extends StatelessWidget {
                       const Text('Создайте аккаунт',
                           style: TextStyle(color: Colors.white, fontSize: 18)),
                       const SizedBox(height: 30),
-                      const EmailForm(
+                      EmailForm(
                         color: Colors.white,
+                        controller: emailController,
                       ),
                       const SizedBox(height: 30),
-                      const PasswordForm(
+                      PasswordForm(
+                        controller: passwordController,
                         color: Colors.white,
                         label: 'Пароль',
                       ),
-                      const PasswordForm(
+                      PasswordForm(
+                        controller: confirmPasswordController,
                         color: Colors.white,
                         label: 'Повторный пароль',
                       ),
                       const SizedBox(height: 30),
                       ButtonForm(
-                        onPressed: () => Navigator.of(context).pushNamed('/'),
+                        onPressed: signUserUp,
                         text: 'Далее',
                       ),
                       const SizedBox(height: 15),

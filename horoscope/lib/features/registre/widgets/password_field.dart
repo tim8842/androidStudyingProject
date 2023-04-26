@@ -13,6 +13,7 @@ class PasswordField extends StatefulWidget {
       this.onFieldSubmitted,
       this.focusNode,
       this.textInputAction,
+      this.controller,
       this.color});
 
   final String? restorationId;
@@ -26,6 +27,7 @@ class PasswordField extends StatefulWidget {
   final FocusNode? focusNode;
   final TextInputAction? textInputAction;
   final Color? color;
+  final TextEditingController? controller;
 
   @override
   State<PasswordField> createState() => _PasswordFieldState();
@@ -45,6 +47,7 @@ class _PasswordFieldState extends State<PasswordField> with RestorationMixin {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: widget.controller,
       style: TextStyle(color: widget.color!, fontSize: 20),
       key: widget.fieldKey,
       restorationId: 'password_text_field',

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:horoscope/features/horoscope/pages/auth_page/view/auth_page.dart';
+import 'package:horoscope/features/horoscope/pages/login_or_register_page/view/login_or_register_page.dart';
 import 'package:horoscope/features/horoscope/pages/pages.dart';
 
 class FadeThroughTransitionHoroscope extends StatefulWidget {
@@ -24,7 +26,7 @@ class _FadeThroughTransitionHoroscopeState
     const HoroscopesPage(),
     const LovePage(),
     const FinderPage(),
-    const ProfilePage(),
+    const AuthPage(),
     const SettingsPage()
   ];
 

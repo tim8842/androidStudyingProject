@@ -29,6 +29,13 @@
             {
               "client_id": "720365984589-88r087lre871vm6u1tljmote43e6rup1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "720365984589-9fiq40oarvpbdjl2u9nit1obgdepiqlt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.buffoons.horoscope"
+              }
             }
           ]
         }
