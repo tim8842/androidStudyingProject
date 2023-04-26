@@ -32,4 +32,3 @@ login: test@gmail.com
 
 password: test123
 
-Либо нажать на надписать Register now, чтобы создать новый аккаунт
