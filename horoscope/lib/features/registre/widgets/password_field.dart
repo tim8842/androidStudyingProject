@@ -52,7 +52,6 @@ class _PasswordFieldState extends State<PasswordField> with RestorationMixin {
       key: widget.fieldKey,
       restorationId: 'password_text_field',
       obscureText: _obscureText.value,
-      maxLength: 8,
       onSaved: widget.onSaved,
       validator: widget.validator,
       onFieldSubmitted: widget.onFieldSubmitted,

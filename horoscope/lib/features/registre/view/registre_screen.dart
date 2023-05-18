@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:horoscope/features/registre/widgets/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegistreScreen extends StatefulWidget {
   const RegistreScreen({super.key});
@@ -16,6 +18,30 @@ class _RegistreScreenState extends State<RegistreScreen> {
 
   String error = "";
 
+  void createData(String email) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? name = ((prefs.getString("name")) ?? 0) as String?;
+    String? birthday = ((prefs.getString("birthday")) ?? 0) as String?;
+    String? gender = ((prefs.getString("gender")) ?? 0) as String?;
+
+    await prefs.setInt("initScreen", 0);
+    CollectionReference db = FirebaseFirestore.instance.collection('users');
+    final docSnap = db.doc(email);
+    docSnap
+        .set({
+          'name': name,
+          'surname': '',
+          'gender': gender,
+          'birthday': birthday,
+          'country': 'Choose Country',
+          'state': 'Choose State',
+          'city': 'Choose City',
+          'information': ''
+        })
+        .then((value) => print('added'))
+        .catchError((error) => print('Add failed: $error'));
+  }
+
   void signUserUp() async {
     showDialog(
       context: context,
@@ -29,13 +55,15 @@ class _RegistreScreenState extends State<RegistreScreen> {
       if (passwordController.text == confirmPasswordController.text) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
+        createData(emailController.text);
+        Navigator.pop(context);
+        Navigator.of(context).pushNamed('/');
       } else {
         setState(() {
           error = "Пароли отличаются";
         });
+        Navigator.pop(context);
       }
-      Navigator.pop(context);
-      Navigator.of(context).pushNamed('/');
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if ((e.code == 'user-not-found') || (e.code == 'invalid-email')) {
@@ -82,6 +110,10 @@ class _RegistreScreenState extends State<RegistreScreen> {
                       const Text('Создайте аккаунт',
                           style: TextStyle(color: Colors.white, fontSize: 18)),
                       const SizedBox(height: 30),
+                      Text(
+                        error,
+                        style: TextStyle(color: Colors.red),
+                      ),
                       EmailForm(
                         color: Colors.white,
                         controller: emailController,
@@ -99,7 +131,9 @@ class _RegistreScreenState extends State<RegistreScreen> {
                       ),
                       const SizedBox(height: 30),
                       ButtonForm(
-                        onPressed: signUserUp,
+                        onPressed: () {
+                          signUserUp();
+                        },
                         text: 'Далее',
                       ),
                       const SizedBox(height: 15),

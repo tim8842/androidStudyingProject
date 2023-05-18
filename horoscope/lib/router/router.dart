@@ -6,6 +6,6 @@ import 'package:horoscope/features/registre/registre.dart';
 final routes = {
   '/': (context) => const FadeThroughTransitionHoroscope(),
   '/finder/map': (context) => const MapScreen(),
-  '/intro': (context) => const IntroScreen(),
+  '/intro': (context) => IntroScreen(),
   '/registre': (context) => const RegistreScreen(),
 };

@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:horoscope/features/horoscope/pages/login_page/widgets/widgets.dart';
 
+import '../../../../../functions/createData.dart';
+
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
   RegisterPage({super.key, this.onTap});
@@ -30,6 +32,7 @@ class _RegisterPageState extends State<RegisterPage> {
       if (passwordController.text == confirmPasswordController.text) {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
             email: emailController.text, password: passwordController.text);
+        // createData(emailController.text);
       } else {
         setState(() {
           error = "Пароли отличаются";

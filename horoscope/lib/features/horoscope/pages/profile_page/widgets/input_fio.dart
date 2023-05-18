@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 
 class InputFio extends StatelessWidget {
-  const InputFio({super.key});
+  const InputFio({super.key, this.nameController, this.surnameController});
+  final nameController;
+  final surnameController;
 
-  Widget customInput(BuildContext context, String hintName) {
+  Widget customInput(
+      BuildContext context, String hintName, TextEditingController controller) {
     return SizedBox(
-      height: 40,
+      height: 60,
       child: TextFormField(
+        controller: controller,
+        style: TextStyle(color: Colors.black, fontSize: 22),
         decoration: InputDecoration(
-            filled: true,
             labelText: hintName,
             labelStyle: Theme.of(context).textTheme.bodyMedium),
       ),
@@ -24,11 +28,11 @@ class InputFio extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          customInput(context, 'Имя'),
+          customInput(context, 'Имя', nameController),
           const SizedBox(
             height: 20,
           ),
-          customInput(context, 'Фамилия'),
+          customInput(context, 'Фамилия', surnameController),
         ],
       ),
     );

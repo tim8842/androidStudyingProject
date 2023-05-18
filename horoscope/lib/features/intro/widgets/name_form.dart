@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
 class NameForm extends StatelessWidget {
-  const NameForm({super.key});
+  const NameForm({super.key, this.controller});
+  final controller;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 60,
       child: TextFormField(
+        controller: controller,
         style: const TextStyle(fontSize: 20),
         restorationId: 'name_field',
         textInputAction: TextInputAction.next,

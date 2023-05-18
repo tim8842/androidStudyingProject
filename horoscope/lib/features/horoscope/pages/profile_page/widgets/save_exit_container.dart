@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SaveExitContainer extends StatelessWidget {
-  const SaveExitContainer({super.key});
+  const SaveExitContainer({super.key, this.saveFunction});
+  final saveFunction;
 
   void sighUserOut() {
     FirebaseAuth.instance.signOut();
@@ -15,6 +16,7 @@ class SaveExitContainer extends StatelessWidget {
       child: Row(mainAxisAlignment: MainAxisAlignment.end, children: [
         ElevatedButton(
             onPressed: () {
+              saveFunction();
               // HoroscopeService().getHoroscopeList();
             },
             child: const Text('Сохранить')),

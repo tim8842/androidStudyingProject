@@ -4,19 +4,28 @@ enum Gender { male, female }
 
 class GenderRadios extends StatefulWidget {
   final Color colorTitle;
+  final controller;
 
-  const GenderRadios({super.key, required this.colorTitle});
+  const GenderRadios({super.key, required this.colorTitle, this.controller});
 
   @override
   // ignore: no_logic_in_create_state
-  State<GenderRadios> createState() => _GenderRadios();
+  State<GenderRadios> createState() => _GenderRadios(controller);
 }
 
 class _GenderRadios extends State<GenderRadios> {
   Gender? _gender = Gender.male;
+  final controller;
+
+  _GenderRadios(this.controller);
 
   @override
   Widget build(BuildContext context) {
+    if (controller.text == 'male') {
+      _gender = Gender.male;
+    } else {
+      _gender = Gender.female;
+    }
     return Container(
         margin: const EdgeInsets.only(top: 10, bottom: 20),
         height: 35,
@@ -27,6 +36,7 @@ class _GenderRadios extends State<GenderRadios> {
                 onTap: () {
                   setState(() {
                     _gender = Gender.male;
+                    controller.text = 'male';
                   });
                 },
                 child: Text('Мужчина',
@@ -44,6 +54,7 @@ class _GenderRadios extends State<GenderRadios> {
                 onChanged: (Gender? value) {
                   setState(() {
                     _gender = value;
+                    controller.text = 'male';
                   });
                 }),
             Flexible(
@@ -51,6 +62,7 @@ class _GenderRadios extends State<GenderRadios> {
                 onTap: () {
                   setState(() {
                     _gender = Gender.female;
+                    controller.text = 'female';
                   });
                 },
                 child: Text('Женщина',
@@ -68,6 +80,7 @@ class _GenderRadios extends State<GenderRadios> {
                 onChanged: (Gender? value) {
                   setState(() {
                     _gender = value;
+                    controller.text = 'female';
                   });
                 }),
           ],

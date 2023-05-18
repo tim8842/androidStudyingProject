@@ -5,8 +5,9 @@ import 'package:intl/intl.dart';
 class BasicDateField extends StatelessWidget {
   final format = DateFormat("dd-MM-yyyy");
   final Color colorTitle;
+  final controller;
 
-  BasicDateField({super.key, required this.colorTitle});
+  BasicDateField({super.key, required this.colorTitle, this.controller});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -18,6 +19,7 @@ class BasicDateField extends StatelessWidget {
                 color: colorTitle, fontSize: 18, fontWeight: FontWeight.w500),
           ),
           DateTimeField(
+            controller: controller,
             style: TextStyle(color: colorTitle, fontSize: 20),
             format: format,
             decoration: InputDecoration(

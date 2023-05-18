@@ -2,7 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:horoscope/features/intro/widgets/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class IntroScreen extends StatelessWidget {
+class IntroScreen extends StatefulWidget {
+  IntroScreen({super.key});
+
+  @override
+  State<IntroScreen> createState() => _IntroScreenState();
+}
+
+class _IntroScreenState extends State<IntroScreen> {
+  final _nameController = TextEditingController();
+
+  final _birthdayController = TextEditingController();
+
+  final _genderController = TextEditingController(text: 'female');
+
+  String error = '';
+
   void changeWelcomePage(context) async {
     WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -10,7 +25,32 @@ class IntroScreen extends StatelessWidget {
     Navigator.pushNamed(context, '/registre');
   }
 
-  const IntroScreen({super.key});
+  void setData(context, List<String> name, List<String> value) async {
+    WidgetsFlutterBinding.ensureInitialized();
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    for (var i = 0; i < name.length; i++) {
+      if (value[i] != '') {
+        await prefs.setString(name[i], value[i]);
+        setState(() {
+          error = '';
+        });
+      } else {
+        setState(() {
+          error = 'Заполните поля';
+        });
+        return;
+      }
+    }
+    changeWelcomePage(context);
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _birthdayController.dispose();
+    _genderController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,14 +78,34 @@ class IntroScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       const SizedBox(height: 30),
-                      const NameForm(),
+                      Text(
+                        error,
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      const SizedBox(height: 10),
+                      NameForm(controller: _nameController),
                       const SizedBox(height: 30),
-                      BasicDateField(colorTitle: Colors.white),
+                      BasicDateField(
+                          colorTitle: Colors.white,
+                          controller: _birthdayController),
                       const SizedBox(height: 30),
-                      const GenderRadios(colorTitle: Colors.white),
+                      GenderRadios(
+                        colorTitle: Colors.white,
+                        controller: _genderController,
+                      ),
                       const SizedBox(height: 30),
                       ButtonForm(
-                        onPressed: () => changeWelcomePage(context),
+                        onPressed: () => {
+                          setData(context, [
+                            'name',
+                            'birthday',
+                            'gender'
+                          ], [
+                            _nameController.text,
+                            _birthdayController.text,
+                            _genderController.text
+                          ]),
+                        },
                         text: 'Далее',
                       )
                     ]),
