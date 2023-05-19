@@ -25,66 +25,6 @@ class _FadeThroughTransitionHoroscopeState
     'Настройки'
   ];
 
-  // void setControllers() async {
-  //   if (FirebaseAuth.instance.currentUser != null) {
-  //     setState(() {
-  //       endSet = false;
-  //     });
-  //     CollectionReference db = FirebaseFirestore.instance.collection('users');
-  //     String? email = FirebaseAuth.instance.currentUser?.email;
-  //     final docSnap = db.doc(email);
-  //     Map<String, dynamic> data;
-  //     docSnap.get().then((value) => {
-  //           if (value.exists)
-  //             {
-  //               data = value.data() as Map<String, dynamic>,
-  //               _nameController.text = data['name'],
-  //               _genderController.text = data['gender'],
-  //               _surnameController.text = data['surname'],
-  //               _birthdayController.text = data['birthday'],
-  //               _countryController.text = data['country'],
-  //               _cityController.text = data['city'],
-  //               _stateController.text = data['state'],
-  //               _informationController.text = data['information'],
-  //               print(data['name']),
-  //               print(_genderController),
-  //               setState(() {
-  //                 endSet = true;
-  //               })
-  //             }
-  //           else
-  //             {
-  //               setState(() {
-  //                 endSet = true;
-  //               }),
-  //               updateDatabase()
-  //             }
-  //         });
-  //   }
-  // }
-
-  // void updateDatabase() async {
-  //   CollectionReference db = FirebaseFirestore.instance.collection('users');
-  //   String? email = FirebaseAuth.instance.currentUser?.email;
-  //   final docSnap = db.doc(email);
-  //   docSnap
-  //       .set({
-  //         'name': _nameController.text,
-  //         'surname': _surnameController.text,
-  //         'gender': _genderController.text,
-  //         'birthday': _birthdayController.text,
-  //         'country': _countryController.text,
-  //         'state': _stateController.text,
-  //         'city': _cityController.text,
-  //         'information': _informationController.text
-  //       })
-  //       .then((value) => print('added'))
-  //       .catchError((error) => print('Add failed: $error'));
-  //   // if (docSnap == null) {
-  //   //   print('net elementa');
-  //   // }
-  // }
-
   final _nameController = TextEditingController();
   final _surnameController = TextEditingController();
   final _genderController = TextEditingController();
@@ -116,7 +56,6 @@ class _FadeThroughTransitionHoroscopeState
 
   @override
   Widget build(BuildContext context) {
-    // setControllers();
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
