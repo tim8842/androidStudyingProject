@@ -25,17 +25,8 @@ class _FadeThroughTransitionHoroscopeState
     'Настройки'
   ];
 
-  final _nameController = TextEditingController();
-  final _surnameController = TextEditingController();
-  final _genderController = TextEditingController();
-  final _birthdayController = TextEditingController();
-  final _countryController = TextEditingController(text: "Choose Country");
-  final _stateController = TextEditingController(text: "Choose State");
-  final _cityController = TextEditingController(text: "Choose City");
-  final _informationController = TextEditingController();
-
   final _pageList = <Widget>[
-    const HoroscopesPage(),
+    HoroscopesPage(),
     const LovePage(),
     const FinderPage(),
     const AuthPage(),

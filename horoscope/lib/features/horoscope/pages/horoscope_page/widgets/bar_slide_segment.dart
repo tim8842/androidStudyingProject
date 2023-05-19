@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:custom_sliding_segmented_control/custom_sliding_segmented_control.dart';
 
 class BarSliderSegment extends StatelessWidget {
-  const BarSliderSegment({super.key});
+  Function valueChangedFunc;
+  BarSliderSegment({super.key, required this.valueChangedFunc});
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: CustomSlidingSegmentedControl<int>(
-        initialValue: 1,
+        initialValue: 0,
         children: const {
-          1: Text('Сегодня'),
-          2: Text('Завтра'),
-          3: Text('Неделя'),
+          0: Text('Сегодня'),
+          1: Text('Завтра'),
+          2: Text('Неделя'),
         },
         decoration: BoxDecoration(
           color: CupertinoColors.white,
@@ -31,7 +32,7 @@ class BarSliderSegment extends StatelessWidget {
           ],
         ),
         onValueChanged: (v) {
-          // print(v);
+          valueChangedFunc(v);
         },
       ),
     );
