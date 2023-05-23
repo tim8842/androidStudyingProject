@@ -41,6 +41,7 @@
 
 Показывают информацию о пользователе, ее можно редактировать и сохранять. Также работает кнопка выхода из аккаунта.
 ![image](https://github.com/tim8842/androidStudyingProject/assets/79981959/3f9c21bf-4591-48b5-8f35-6e430a2038d1)
+
 ![image](https://github.com/tim8842/androidStudyingProject/assets/79981959/64a71a4c-e7c7-44fb-a636-bec01086dbc4)
 
 #### Страница входа
