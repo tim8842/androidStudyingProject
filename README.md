@@ -67,7 +67,7 @@ password: test123
 В некоторые периоды его может и не быть, так как наши эксперты иногда не обладают данными на определенный период.
 
 Как использовать и применять приложение вы можете посмотреть тут
-[Руководство пользователя](https://github.com/tim8842/androidStudyingProject/blob/main/How%20to%20use.md)
+[Руководство пользователя](https://github.com/tim8842/androidStudyingProject/blob/main/USERGUIDE)
 
 Если хотите посмотреть видео, то тут
 [Видео руководство](https://disk.yandex.ru/i/Bf96y4suPOwqJQ)
