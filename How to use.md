@@ -34,7 +34,7 @@
 ![image](https://github.com/tim8842/androidStudyingProject/assets/79981959/64a71a4c-e7c7-44fb-a636-bec01086dbc4)
 
 #### Страница входа
-Позволяет войти в аккаунт
+Позволяет войти в аккаунт.
 ![image](https://github.com/tim8842/androidStudyingProject/assets/79981959/bcd44349-b35f-47be-8d09-11ffc31af631)
 
 #### Страница регистрации, позволяет зарегистрироваться позже
