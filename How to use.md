@@ -18,6 +18,8 @@
 
 Здесь находится информация о предсказани по определенному гороскопу, а также навигация снизу.
 ![image](https://github.com/tim8842/androidStudyingProject/assets/79981959/bea331ce-33b2-4bc1-814b-90ff87abbfee)
+![image](https://github.com/tim8842/androidStudyingProject/assets/79981959/142deabe-ed1f-4891-ae96-d7fde0693afc)
+
 
 #### Страница на просмотр совместимости
 
