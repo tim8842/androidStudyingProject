@@ -50,4 +50,5 @@
 #### Страница регистрации
 
 позволяет зарегистрироваться позже
+
 ![image](https://github.com/tim8842/androidStudyingProject/assets/79981959/14469bfa-3f08-4e2c-8803-63fc26402fad)
