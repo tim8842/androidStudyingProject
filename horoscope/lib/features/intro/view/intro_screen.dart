@@ -3,7 +3,7 @@ import 'package:horoscope/features/intro/widgets/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class IntroScreen extends StatefulWidget {
-  IntroScreen({super.key});
+  const IntroScreen({super.key});
 
   @override
   State<IntroScreen> createState() => _IntroScreenState();
@@ -46,6 +46,7 @@ class _IntroScreenState extends State<IntroScreen> {
 
   @override
   void dispose() {
+    super.dispose();
     _nameController.dispose();
     _birthdayController.dispose();
     _genderController.dispose();
@@ -81,7 +82,7 @@ class _IntroScreenState extends State<IntroScreen> {
                         const SizedBox(height: 30),
                         Text(
                           error,
-                          style: TextStyle(color: Colors.red),
+                          style: const TextStyle(color: Colors.red),
                         ),
                         const SizedBox(height: 10),
                         NameForm(controller: _nameController),

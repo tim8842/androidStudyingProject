@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:horoscope/features/horoscope/pages/profile_page/widgets/widgets.dart';
 
 class ProfilePage extends StatefulWidget {
+  // ignore: prefer_typing_uninitialized_variables
   final snapshot;
-  ProfilePage({super.key, this.snapshot});
+  const ProfilePage({super.key, this.snapshot});
 
   @override
   State<ProfilePage> createState() => _ProfilePageState();
@@ -71,8 +72,10 @@ class _ProfilePageState extends State<ProfilePage> {
           'city': _cityController.text,
           'information': _informationController.text
         })
-        .then((value) => print('added'))
-        .catchError((error) => print('Add failed: $error'));
+        // ignore: avoid_print
+        .then((value) => debugPrint('added'))
+        // ignore: avoid_print
+        .catchError((error) => debugPrint('Add failed: $error'));
     // if (docSnap == null) {
     //   print('net elementa');
     // }
@@ -80,7 +83,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     _nameController.dispose();
     _surnameController.dispose();
     _genderController.dispose();
@@ -99,11 +101,11 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    if (!endSet)
+    if (!endSet) {
       return const Center(
         child: CircularProgressIndicator(),
       );
-    else
+    } else {
       return CustomScrollView(
         slivers: [
           SliverAppBar(
@@ -161,5 +163,6 @@ class _ProfilePageState extends State<ProfilePage> {
           )
         ],
       );
+    }
   }
 }

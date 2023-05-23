@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:html/parser.dart' as html_parser;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -16,8 +15,9 @@ class HoroscopeService {
       String? dataString = (prefs.getString("dataOfHoroscope"));
       data = json.decode(dataString!);
       return data;
-    } else
+    } else {
       await prefs.setInt("dateOfCall", day);
+    }
     final res = await Future.wait([
       getDataFromMail(horoscopeName),
       getDataManWomanRambler(horoscopeName),
@@ -31,15 +31,14 @@ class HoroscopeService {
     return data;
   }
 
-  Future<String> parseHoroscopePage(
-      String url, String html_name_element) async {
+  Future<String> parseHoroscopePage(String url, String htmlNameElement) async {
     String finalStr = "";
     final response = await Dio().get(url);
     final document = html_parser.parse(response.data);
-    final results = document.getElementsByClassName(html_name_element);
-    results[0].children.forEach((element) {
+    final results = document.getElementsByClassName(htmlNameElement);
+    for (var element in results[0].children) {
       finalStr = finalStr + element.text;
-    });
+    }
     return finalStr;
   }
 
@@ -49,12 +48,12 @@ class HoroscopeService {
     final result = document.getElementsByTagName('p');
     String finalString = "";
     for (int i = 0; i < countOfTags; i++) {
-      if (result.length != 0) {
+      if (result.isNotEmpty) {
         finalString = finalString + result[i].text;
-      } else
+      } else {
         finalString = "Эксперты не заполнили данные, мы сожалеем";
+      }
     }
-    ;
     return finalString;
   }
 
@@ -64,8 +63,7 @@ class HoroscopeService {
     List normalData = [];
     for (int i = 0; i < 2; i++) {
       data.add(parseRamblerPage(
-          'https://horoscopes.rambler.ru/${horoscopeName}/${name[i]}/today/',
-          2));
+          'https://horoscopes.rambler.ru/$horoscopeName/${name[i]}/today/', 2));
     }
     normalData = await Future.wait(data);
     return normalData;
@@ -81,7 +79,7 @@ class HoroscopeService {
       if (i == 2) periods[0] = 'today/';
       for (int l = 0; l < periods.length; l++) {
         data.add(parseRamblerPage(
-            'https://horoscopes.rambler.ru/${horoscopeName}/${nameTypes[i]}/${periods[l]}',
+            'https://horoscopes.rambler.ru/$horoscopeName/${nameTypes[i]}/${periods[l]}',
             1));
       }
     }
@@ -98,7 +96,7 @@ class HoroscopeService {
     List normalData = [];
     for (int i = 0; i < periods.length; i++) {
       data.add(parseHoroscopePage(
-          'https://horo.mail.ru/prediction/${horoscopeName}/${periods[i]}/',
+          'https://horo.mail.ru/prediction/$horoscopeName/${periods[i]}/',
           'article__item article__item_alignment_left article__item_html'));
     }
     normalData = await Future.wait(data);

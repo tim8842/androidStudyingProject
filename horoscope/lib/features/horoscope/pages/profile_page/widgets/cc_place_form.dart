@@ -3,9 +3,11 @@ import 'package:country_state_city_picker/country_state_city_picker.dart';
 
 class CcPlaceForm extends StatefulWidget {
   const CcPlaceForm({super.key, this.controllers});
+  // ignore: prefer_typing_uninitialized_variables
   final controllers;
 
   @override
+  // ignore: library_private_types_in_public_api
   _CcPlaceFormState createState() => _CcPlaceFormState();
 }
 

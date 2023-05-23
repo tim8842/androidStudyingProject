@@ -1,12 +1,12 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:horoscope/features/horoscope/pages/login_page/widgets/widgets.dart';
 
-import '../../../../../functions/createData.dart';
-
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  RegisterPage({super.key, this.onTap});
+  const RegisterPage({super.key, this.onTap});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -81,7 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
           const SizedBox(height: 20),
           Text(
             error,
-            style: TextStyle(color: Colors.red, fontSize: 10),
+            style: const TextStyle(color: Colors.red, fontSize: 10),
           ),
           const SizedBox(height: 10),
           LoginInput(
@@ -125,12 +125,12 @@ class _RegisterPageState extends State<RegisterPage> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.all(25),
+            padding: const EdgeInsets.all(25),
             child: Row(
               children: [
                 GestureDetector(
                   onTap: widget.onTap,
-                  child: Text(
+                  child: const Text(
                     "Войти",
                     style: TextStyle(
                         color: Colors.blue, fontWeight: FontWeight.bold),

@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HoroscopesPage extends StatefulWidget {
-  HoroscopesPage({super.key});
+  const HoroscopesPage({super.key});
 
   @override
   State<HoroscopesPage> createState() => _HoroscopesPageState();
@@ -64,22 +64,25 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
       Map<String, dynamic> dataOfUser;
       docSnap.get().then((value) async {
         dataOfUser = value.data() as Map<String, dynamic>;
-        if (mounted)
+        if (mounted) {
           setState(() {
             horoscope = dataOfUser['birthday'];
           });
+        }
         if (horoscope != '') {
           changeListToHoroscope(horoscope);
           debugPrint(horoscopeList.toString());
           dataOfHoroscope = await HoroscopeService()
               .getHoroscopeData(horPeriodIndex, horoscopeList[0].toLowerCase());
-          if (mounted)
+          if (mounted) {
             setState(() {
               classDataHoroscope = dataOfHoroscope;
               endSet = true;
             });
-        } else
+          }
+        } else {
           errorSetState();
+        }
       });
     } else {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -93,13 +96,15 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
         debugPrint(horoscopeList.toString());
         dataOfHoroscope = await HoroscopeService()
             .getHoroscopeData(horPeriodIndex, horoscopeList[0].toLowerCase());
-        if (mounted)
+        if (mounted) {
           setState(() {
             classDataHoroscope = dataOfHoroscope;
             endSet = true;
           });
-      } else
+        }
+      } else {
         errorSetState();
+      }
     }
   }
 
@@ -112,12 +117,13 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
   }
 
   void errorSetState() {
-    if (mounted)
+    if (mounted) {
       setState(() {
         horoscopeList[1] = "Ошибка";
         horoscopeList[0] = 'error';
         endSet = true;
       });
+    }
   }
 
   @override
@@ -128,24 +134,24 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
 
   @override
   Widget build(BuildContext context) {
-    if (!endSet)
+    if (!endSet) {
       return Center(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text("Погодите, инопланетяне выслали данные"),
-          SizedBox(
+          const Text("Погодите, инопланетяне выслали данные"),
+          const SizedBox(
             height: 30,
           ),
           Image.asset('assets/png/ufo.png'),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
-          CircularProgressIndicator(),
+          const CircularProgressIndicator(),
         ],
       ));
-    else {
+    } else {
       return Container(
           decoration: const BoxDecoration(
               image: DecorationImage(

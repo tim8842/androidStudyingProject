@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, use_build_context_synchronously
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -114,7 +116,7 @@ class _RegistreScreenState extends State<RegistreScreen> {
                         const SizedBox(height: 30),
                         Text(
                           error,
-                          style: TextStyle(color: Colors.red),
+                          style: const TextStyle(color: Colors.red),
                         ),
                         EmailForm(
                           color: Colors.white,

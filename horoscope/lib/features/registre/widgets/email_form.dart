@@ -1,9 +1,11 @@
+// ignore_for_file: prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 
 class EmailForm extends StatelessWidget {
   final Color color;
   final controller;
-  EmailForm({super.key, required this.color, this.controller});
+  const EmailForm({super.key, required this.color, this.controller});
 
   @override
   Widget build(BuildContext context) {

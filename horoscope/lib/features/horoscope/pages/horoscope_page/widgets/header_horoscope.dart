@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 
+// ignore: must_be_immutable
 class HeaderHoroscope extends StatelessWidget {
   HeaderHoroscope({super.key, this.text});
   String? text;
@@ -16,12 +17,12 @@ class HeaderHoroscope extends StatelessWidget {
           trimMode: TrimMode.Line,
           trimCollapsedText: '\n Читать ещё',
           trimExpandedText: '\n Свернуть',
-          moreStyle: TextStyle(
+          moreStyle: const TextStyle(
             fontSize: 13,
             height: 1.9,
             fontWeight: FontWeight.bold,
           ),
-          lessStyle: TextStyle(
+          lessStyle: const TextStyle(
             fontSize: 13,
             height: 1.9,
             fontWeight: FontWeight.bold,

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, unnecessary_null_comparison
+
 List<String> getHoroscope(DateTime dateOfBirth) {
   int day = dateOfBirth.day;
   int month = dateOfBirth.month;
