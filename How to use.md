@@ -39,7 +39,7 @@
 
 #### Страница профиля
 
-Показывают информацию о пользователе, ее можно редактировать и сохранять. Также работает кнопка выхода из аккаунта.
+Показывает информацию о пользователе, ее можно редактировать и сохранять. Также работает кнопка выхода из аккаунта.
 ![image](https://github.com/tim8842/androidStudyingProject/assets/79981959/3f9c21bf-4591-48b5-8f35-6e430a2038d1)
 
 ![image](https://github.com/tim8842/androidStudyingProject/assets/79981959/64a71a4c-e7c7-44fb-a636-bec01086dbc4)
@@ -54,3 +54,10 @@
 позволяет зарегистрироваться позже
 
 ![image](https://github.com/tim8842/androidStudyingProject/assets/79981959/14469bfa-3f08-4e2c-8803-63fc26402fad)
+
+#### Страница настроек
+
+Здесь должны были быть настройки приложения.
+
+![image](https://github.com/tim8842/androidStudyingProject/assets/79981959/2635de94-f98f-4889-87ec-920b2ed32856)
+
