@@ -13,29 +13,32 @@ class MapScreen extends StatelessWidget {
     final point = LatLng(55.994333, 92.797481);
     return Scaffold(
         appBar: AppBar(title: const Text('Карта')),
-        body: Stack(
-          children: [
-            FlutterMap(
-              options:
-                  MapOptions(center: LatLng(55.994333, 92.797481), zoom: 16.0),
-              children: [
-                TileLayer(
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                  subdomains: const ['a', 'b', 'c'],
-                ),
-                MarkerLayer(
-                  markers: [
-                    Marker(
-                        point: point,
-                        builder: (ctx) => const Icon(
-                              Icons.location_on,
-                              color: Colors.red,
-                            ))
-                  ],
-                )
-              ],
-            ),
-          ],
+        body: SafeArea(
+          child: Stack(
+            children: [
+              FlutterMap(
+                options: MapOptions(
+                    center: LatLng(55.994333, 92.797481), zoom: 16.0),
+                children: [
+                  TileLayer(
+                    urlTemplate:
+                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    subdomains: const ['a', 'b', 'c'],
+                  ),
+                  MarkerLayer(
+                    markers: [
+                      Marker(
+                          point: point,
+                          builder: (ctx) => const Icon(
+                                Icons.location_on,
+                                color: Colors.red,
+                              ))
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
         )
         // body: Image.asset('assets/png/map.png'),
         // body: const GoogleMap(

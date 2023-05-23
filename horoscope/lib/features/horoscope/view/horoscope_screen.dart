@@ -52,7 +52,7 @@ class _FadeThroughTransitionHoroscopeState
           automaticallyImplyLeading: false,
           title: Text(_appBarTitleList[_currentIndex],
               style: Theme.of(context).textTheme.titleMedium)),
-      body: Center(child: _pageList[_currentIndex]),
+      body: SafeArea(child: Center(child: _pageList[_currentIndex])),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         onTap: (selectedIndex) {

@@ -58,60 +58,62 @@ class _IntroScreenState extends State<IntroScreen> {
             automaticallyImplyLeading: false,
             title: Text('Здравствуйте',
                 style: Theme.of(context).textTheme.titleMedium)),
-        body: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/jpg/cosmose.jpg'),
-                  fit: BoxFit.cover)),
-          child: Center(
-              child: SingleChildScrollView(
-            child: Form(
-              child: Container(
-                margin: const EdgeInsets.all(30),
-                width: 400,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Введите информацию о вас',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
-                      ),
-                      const SizedBox(height: 30),
-                      Text(
-                        error,
-                        style: TextStyle(color: Colors.red),
-                      ),
-                      const SizedBox(height: 10),
-                      NameForm(controller: _nameController),
-                      const SizedBox(height: 30),
-                      BasicDateField(
+        body: SafeArea(
+          child: Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/jpg/cosmose.jpg'),
+                    fit: BoxFit.cover)),
+            child: Center(
+                child: SingleChildScrollView(
+              child: Form(
+                child: Container(
+                  margin: const EdgeInsets.all(30),
+                  width: 400,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          'Введите информацию о вас',
+                          style: TextStyle(color: Colors.white, fontSize: 18),
+                        ),
+                        const SizedBox(height: 30),
+                        Text(
+                          error,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        const SizedBox(height: 10),
+                        NameForm(controller: _nameController),
+                        const SizedBox(height: 30),
+                        BasicDateField(
+                            colorTitle: Colors.white,
+                            controller: _birthdayController),
+                        const SizedBox(height: 30),
+                        GenderRadios(
                           colorTitle: Colors.white,
-                          controller: _birthdayController),
-                      const SizedBox(height: 30),
-                      GenderRadios(
-                        colorTitle: Colors.white,
-                        controller: _genderController,
-                      ),
-                      const SizedBox(height: 30),
-                      ButtonForm(
-                        onPressed: () => {
-                          setData(context, [
-                            'name',
-                            'birthday',
-                            'gender'
-                          ], [
-                            _nameController.text,
-                            _birthdayController.text,
-                            _genderController.text
-                          ]),
-                        },
-                        text: 'Далее',
-                      )
-                    ]),
+                          controller: _genderController,
+                        ),
+                        const SizedBox(height: 30),
+                        ButtonForm(
+                          onPressed: () => {
+                            setData(context, [
+                              'name',
+                              'birthday',
+                              'gender'
+                            ], [
+                              _nameController.text,
+                              _birthdayController.text,
+                              _genderController.text
+                            ]),
+                          },
+                          text: 'Далее',
+                        )
+                      ]),
+                ),
               ),
-            ),
-          )),
+            )),
+          ),
         ));
   }
 }

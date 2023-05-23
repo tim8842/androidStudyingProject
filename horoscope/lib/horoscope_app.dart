@@ -17,6 +17,7 @@ class HoroscopeApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [Locale('ru')],
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: defualtTheme,
       initialRoute: initScreen == 0 ? "/intro" : "/",

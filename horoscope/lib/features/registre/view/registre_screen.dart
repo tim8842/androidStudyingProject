@@ -92,59 +92,62 @@ class _RegistreScreenState extends State<RegistreScreen> {
         appBar: AppBar(
             title: Text('Регистрация',
                 style: Theme.of(context).textTheme.titleMedium)),
-        body: Container(
-          decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/jpg/cosmose.jpg'),
-                  fit: BoxFit.cover)),
-          child: Center(
-              child: SingleChildScrollView(
-            child: Form(
-              child: Container(
-                margin: const EdgeInsets.all(30),
-                width: 400,
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Создайте аккаунт',
-                          style: TextStyle(color: Colors.white, fontSize: 18)),
-                      const SizedBox(height: 30),
-                      Text(
-                        error,
-                        style: TextStyle(color: Colors.red),
-                      ),
-                      EmailForm(
-                        color: Colors.white,
-                        controller: emailController,
-                      ),
-                      const SizedBox(height: 30),
-                      PasswordForm(
-                        controller: passwordController,
-                        color: Colors.white,
-                        label: 'Пароль',
-                      ),
-                      PasswordForm(
-                        controller: confirmPasswordController,
-                        color: Colors.white,
-                        label: 'Повторный пароль',
-                      ),
-                      const SizedBox(height: 30),
-                      ButtonForm(
-                        onPressed: () {
-                          signUserUp();
-                        },
-                        text: 'Далее',
-                      ),
-                      const SizedBox(height: 15),
-                      AHref(
-                          text: 'Пропустить',
+        body: SafeArea(
+          child: Container(
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/jpg/cosmose.jpg'),
+                    fit: BoxFit.cover)),
+            child: Center(
+                child: SingleChildScrollView(
+              child: Form(
+                child: Container(
+                  margin: const EdgeInsets.all(30),
+                  width: 400,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text('Создайте аккаунт',
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 18)),
+                        const SizedBox(height: 30),
+                        Text(
+                          error,
+                          style: TextStyle(color: Colors.red),
+                        ),
+                        EmailForm(
                           color: Colors.white,
-                          onTap: () => Navigator.of(context).pushNamed('/'))
-                    ]),
+                          controller: emailController,
+                        ),
+                        const SizedBox(height: 30),
+                        PasswordForm(
+                          controller: passwordController,
+                          color: Colors.white,
+                          label: 'Пароль',
+                        ),
+                        PasswordForm(
+                          controller: confirmPasswordController,
+                          color: Colors.white,
+                          label: 'Повторный пароль',
+                        ),
+                        const SizedBox(height: 30),
+                        ButtonForm(
+                          onPressed: () {
+                            signUserUp();
+                          },
+                          text: 'Далее',
+                        ),
+                        const SizedBox(height: 15),
+                        AHref(
+                            text: 'Пропустить',
+                            color: Colors.white,
+                            onTap: () => Navigator.of(context).pushNamed('/'))
+                      ]),
+                ),
               ),
-            ),
-          )),
+            )),
+          ),
         ));
   }
 }

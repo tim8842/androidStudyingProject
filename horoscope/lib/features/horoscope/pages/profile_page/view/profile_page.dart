@@ -33,8 +33,6 @@ class _ProfilePageState extends State<ProfilePage> {
               _cityController.text = data['city'],
               _stateController.text = data['state'],
               _informationController.text = data['information'],
-              print(data['name']),
-              print(_genderController),
               setState(() {
                 endSet = true;
               })

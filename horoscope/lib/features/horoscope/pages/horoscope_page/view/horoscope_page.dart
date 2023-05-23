@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:horoscope/features/horoscope/pages/horoscope_page/widgets/widgets.dart';
 import 'package:horoscope/functions/getHoroscope.dart';
+import 'package:horoscope/services/horoscope/horoscope_service.dart';
 import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -21,13 +22,16 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
   final picturesPathsList = [
     'assets/png/love.png',
     'assets/png/business.png',
-    'assets/png/man.png',
-    'assets/png/woman.png',
     'assets/png/sex.png'
   ];
+  final staticPicturesPathsList = [
+    'assets/png/man.png',
+    'assets/png/woman.png',
+  ];
   String horoscope = '';
-  final titlesList = ['Любовь', 'Финансы', 'Мужской', 'Женский', 'Секс'];
-  String headerInfo = 'header infasdasdadasdasassssssssssssssssso';
+  Map classDataHoroscope = {};
+  final staticList = ['Мужской', 'Женский'];
+  final titlesList = ['Любовь', 'Финансы', 'Секс'];
   final textDescriptionList = [
     [
       'В этот день ключом к любовной гармонии Водолеев может стать не романтический интерес, а увлекательное общение. Им будет проще начинать или поддерживать отношения в процессе обмена новостями, шутками или идеями. Занимательная беседа или совместная поездка способна отвлечь их от сложных сторон любви.',
@@ -41,24 +45,39 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
   ];
 
   void getBirthday() async {
+    Map dataOfHoroscope = {};
     setState(() {
       endSet = false;
     });
     final currentUser = FirebaseAuth.instance.currentUser;
     if (currentUser != null) {
+      // SharedPreferences prefs = await SharedPreferences.getInstance();
+      // // await prefs.setString("birthday", '');
+      // String? name = ((prefs.getString("birthday")) ?? 0) as String?;
+      // if (name != null && name != '' && mounted) {
+      //   setState(() {
+      //     horoscope = name;
+      //   });
       CollectionReference db = FirebaseFirestore.instance.collection('users');
       final email = currentUser.email;
       final docSnap = db.doc(email);
-      Map<String, dynamic> data;
-      docSnap.get().then((value) {
-        data = value.data() as Map<String, dynamic>;
-        setState(() {
-          horoscope = data['birthday'];
-          endSet = true;
-        });
+      Map<String, dynamic> dataOfUser;
+      docSnap.get().then((value) async {
+        dataOfUser = value.data() as Map<String, dynamic>;
+        if (mounted)
+          setState(() {
+            horoscope = dataOfUser['birthday'];
+          });
         if (horoscope != '') {
           changeListToHoroscope(horoscope);
-          print(horoscopeList);
+          debugPrint(horoscopeList.toString());
+          dataOfHoroscope = await HoroscopeService()
+              .getHoroscopeData(horPeriodIndex, horoscopeList[0].toLowerCase());
+          if (mounted)
+            setState(() {
+              classDataHoroscope = dataOfHoroscope;
+              endSet = true;
+            });
         } else
           errorSetState();
       });
@@ -66,13 +85,19 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       // await prefs.setString("birthday", '');
       String? name = ((prefs.getString("birthday")) ?? 0) as String?;
-      if (name != null && name != '') {
+      if (name != null && name != '' && mounted) {
         setState(() {
           horoscope = name;
-          endSet = true;
         });
         changeListToHoroscope(horoscope);
-        print(horoscopeList);
+        debugPrint(horoscopeList.toString());
+        dataOfHoroscope = await HoroscopeService()
+            .getHoroscopeData(horPeriodIndex, horoscopeList[0].toLowerCase());
+        if (mounted)
+          setState(() {
+            classDataHoroscope = dataOfHoroscope;
+            endSet = true;
+          });
       } else
         errorSetState();
     }
@@ -87,12 +112,12 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
   }
 
   void errorSetState() {
-    setState(() {
-      horoscopeList[1] = "Ошибка";
-      horoscopeList[0] = 'error';
-      headerInfo = "войдите/зарегистрируйте в аккаунт и укажите дату";
-      endSet = true;
-    });
+    if (mounted)
+      setState(() {
+        horoscopeList[1] = "Ошибка";
+        horoscopeList[0] = 'error';
+        endSet = true;
+      });
   }
 
   @override
@@ -104,9 +129,22 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
   @override
   Widget build(BuildContext context) {
     if (!endSet)
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
+      return Center(
+          child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text("Погодите, инопланетяне выслали данные"),
+          SizedBox(
+            height: 30,
+          ),
+          Image.asset('assets/png/ufo.png'),
+          SizedBox(
+            height: 40,
+          ),
+          CircularProgressIndicator(),
+        ],
+      ));
     else {
       return Container(
           decoration: const BoxDecoration(
@@ -134,7 +172,9 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
                         ],
                       ),
                       HeaderHoroscope(
-                        text: headerInfo,
+                        text: classDataHoroscope['headerInfo'] != null
+                            ? classDataHoroscope['headerInfo'][horPeriodIndex]
+                            : 'войдите в/зарегистрируйте аккаунт и укажите дату рождения',
                       )
                     ],
                   ),
@@ -142,7 +182,8 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
               ),
               SliverToBoxAdapter(
                   child: Container(
-                      margin: const EdgeInsets.all(15),
+                      margin: const EdgeInsets.only(
+                          left: 15, right: 15, bottom: 20, top: 0),
                       height: 35,
                       child: BarSliderSegment(
                         valueChangedFunc: (int newIndex) => {
@@ -158,6 +199,31 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
                       alignment: Alignment.center,
                       decoration: const BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
+                        color: Colors.white,
+                      ),
+                      margin: const EdgeInsets.only(
+                          left: 20, right: 20, bottom: 30),
+                      child: AllHoroscope(
+                        colorText: Colors.black,
+                        title: staticList[index],
+                        iconPath: staticPicturesPathsList[index],
+                        textDescription:
+                            classDataHoroscope['manAndWoman'] != null
+                                ? classDataHoroscope['manAndWoman'][index]
+                                : '',
+                      ),
+                    );
+                  },
+                  childCount: 2,
+                ),
+              ),
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                  (BuildContext context, int index) {
+                    return Container(
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
                         color: Color.fromRGBO(58, 93, 239, 1),
                       ),
                       margin: const EdgeInsets.only(
@@ -166,12 +232,15 @@ class _HoroscopesPageState extends State<HoroscopesPage> {
                         colorText: Colors.white,
                         title: titlesList[index],
                         iconPath: picturesPathsList[index],
-                        textDescription: textDescriptionList[horPeriodIndex]
-                            [index],
+                        textDescription:
+                            classDataHoroscope['ramblerTypes'] != null
+                                ? classDataHoroscope['ramblerTypes'][index]
+                                    [horPeriodIndex]
+                                : '',
                       ),
                     );
                   },
-                  childCount: 5,
+                  childCount: 3,
                 ),
               ),
             ],
