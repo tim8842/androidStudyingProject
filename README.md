@@ -35,7 +35,7 @@ adb install <путь до apk файла>
   - readmore: ^2.1.0
   - dropdown_button2: ^2.0.0
   - datetime_picker_formfield_new: ^2.1.0
-  - intl: ^0.17.0
+  - intl: ^0.18.1
   - country_state_city_picker: ^1.2.8
   - google_maps_flutter: ^2.2.5
   - dio: ^5.0.3
