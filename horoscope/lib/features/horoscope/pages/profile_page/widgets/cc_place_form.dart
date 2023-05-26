@@ -23,9 +23,6 @@ class _CcPlaceFormState extends State<CcPlaceForm> {
         SelectState(
           // style: TextStyle(color: Colors.red),
           style: Theme.of(context).textTheme.bodyMedium,
-          defaultCountry: countryValue,
-          defaultState: stateValue,
-          defaultCity: cityValue,
           onCountryChanged: (value) {
             setState(() {
               widget.controllers[0].text = value;
